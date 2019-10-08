@@ -14,13 +14,13 @@ public class CM_CameraBehaviour : MonoBehaviour
     protected Transform cameraTransform;
 
     [SerializeField, Header("Camera Speed"), UnityEngine.Range(-10, 10)]
-    private float speed = 0;
+    protected float speed = 1;
 
     [SerializeField, Header("Camera distance"), UnityEngine.Range(.1f, 100f)]
-    private float distance = 0;
+    protected float distance = 0;
 
     [SerializeField, Header("Camera target")]
-    private Transform cameraTarget;
+    protected Transform cameraTarget;
 
     // Accesseur
     public bool IsValid => cameraTarget && camera;
@@ -42,7 +42,11 @@ public class CM_CameraBehaviour : MonoBehaviour
     #endregion
 
     #region unity methods
-
+    protected virtual void OnDestroy()
+    {
+        OnUpdateBehaviour = null;
+    }
+    
     #endregion
 
     #region custom methods
@@ -84,11 +88,6 @@ public class CM_CameraBehaviour : MonoBehaviour
 
         return Vector3.zero;
     }
-
-    protected virtual void OnDestroy()
-    {
-        OnUpdateBehaviour = null;
-    }
     #endregion
     
     #region debug
@@ -106,6 +105,5 @@ public class CM_CameraBehaviour : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawLine(transform.position, cameraTarget.position);
     }
-
     #endregion
 }

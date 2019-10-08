@@ -16,14 +16,12 @@ public class CM_CameraManager : MonoBehaviour
     #endregion
 
     #region unity methods
-
     private void Awake()
     {
         InitSingleton();
     }
 
     private void LateUpdate() => UpdateCameraComponent();
-
     #endregion
 
     #region custom methods
@@ -55,11 +53,11 @@ public class CM_CameraManager : MonoBehaviour
 
     void CameraManagerHandler(bool _addCamera, CM_CameraComponent _cameraComponent)
     {
-        bool _canUseHanlder = _cameraComponent.IsValid &&
+        bool _canUseHandler = _cameraComponent.IsValid &&
                               (_addCamera
                                   ? !cameras.ContainsKey(_cameraComponent.ID)
                                   : cameras.ContainsKey(_cameraComponent.ID));
-        if (!_canUseHanlder)
+        if (!_canUseHandler)
             throw new CM_CameraManagerMissingComponentException(_cameraComponent, _cameraComponent.name);
 
         if (_addCamera)
@@ -93,7 +91,5 @@ public class CM_CameraManager : MonoBehaviour
 
     }
     
-    
-
     #endregion
 }
