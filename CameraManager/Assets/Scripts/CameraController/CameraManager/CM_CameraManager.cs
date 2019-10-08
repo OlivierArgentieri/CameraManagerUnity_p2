@@ -15,9 +15,25 @@ public class CM_CameraManager : MonoBehaviour
 
     #endregion
 
+    #region unity methods
+
     private void Awake()
     {
         InitSingleton();
+    }
+
+    private void LateUpdate() => UpdateCameraComponent();
+
+    #endregion
+
+    #region custom methods
+
+    void UpdateCameraComponent()
+    {
+        foreach (KeyValuePair<string, CM_CameraComponent> cam in cameras)
+        {
+            cam.Value.CameraBehaviour.OnUpdateBehaviour?.Invoke();
+        }
     }
 
     private void InitSingleton()
@@ -51,4 +67,33 @@ public class CM_CameraManager : MonoBehaviour
         else
             cameras.Remove(_cameraComponent.ID);
     }
+
+    #endregion
+    
+    #region debug
+
+    [SerializeField, Range(.1f, 1f), Header("DEBUG - GIZMO SIZE")]
+    private float size = 1;
+    private void OnDrawGizmos()
+    {
+        DrawnSphereOnManager();
+        Gizmos.color = Color.yellow;
+        foreach (KeyValuePair<string, CM_CameraComponent> cam in cameras)
+        {
+            Gizmos.DrawLine(transform.position, cam.Value.transform.position);
+        }
+        Gizmos.color = Color.white;
+    }
+
+    private void DrawnSphereOnManager()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position + Vector3.up * 2, size);
+        Gizmos.color = Color.white;
+
+    }
+    
+    
+
+    #endregion
 }

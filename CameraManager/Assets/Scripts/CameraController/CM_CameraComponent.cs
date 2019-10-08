@@ -57,12 +57,14 @@ public class CM_CameraComponent : MonoBehaviour
 
     void InitBehaviour()
     {
+        CM_CameraBehaviour.FollowVectorType _fAxis = CM_CameraBehaviour.FollowVectorType.Up;
         switch (type)
         {
             case CM_CameraType.RTS:
                 break;
             case CM_CameraType.TPS:
                 cameraBehaviour = gameObject.AddComponent<CM_CameraTpsBehaviour>();
+                _fAxis = CM_CameraBehaviour.FollowVectorType.Backward;
                 break;
             case CM_CameraType.FPS:
                 break;
@@ -71,6 +73,8 @@ public class CM_CameraComponent : MonoBehaviour
             default:
                 throw new ArgumentOutOfRangeException(nameof(type), type, null);
         }
+        if(cameraBehaviour)
+            cameraBehaviour.Init(cameraTarget, camera, _fAxis);
     }
 }
 

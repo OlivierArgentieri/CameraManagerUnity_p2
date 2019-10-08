@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CM_CameraTpsBehaviour : CM_CameraBehaviour
+public class CM_CameraFpsBehaviour : CM_CameraBehaviour
 {
     #region unity methods
     #endregion
