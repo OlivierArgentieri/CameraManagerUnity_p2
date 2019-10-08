@@ -8,6 +8,10 @@
       <e p="Assets" t="Include">
         <e p="Scripts" t="Include">
           <e p="CameraController" t="Include">
+            <e p="CameraBehaviour" t="Include">
+              <e p="CM_CameraBehaviour.cs" t="Include" />
+              <e p="CM_CameraTpsBehaviour.cs" t="Include" />
+            </e>
             <e p="CameraManager" t="Include">
               <e p="CM_CameraManager.cs" t="Include" />
             </e>

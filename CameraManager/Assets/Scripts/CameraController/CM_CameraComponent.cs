@@ -3,12 +3,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+[AddComponentMenu("Camera Manager/Component")]
 public class CM_CameraComponent : MonoBehaviour
 {
     [SerializeField, Header("Camera Component")]
-    private string id;
+    private string id = "id";
     public string ID => id;
 
+    [SerializeField, Header("Camera Type")]
+    private CM_CameraType type = CM_CameraType.TPS;
+    
+    [SerializeField, Header("CameraTarget")]
+    private Transform cameraTarget;
+
+    private CM_CameraBehaviour cameraBehaviour;
+
+    public CM_CameraBehaviour CameraBehaviour
+    {
+        get
+        {
+            if (!cameraBehaviour) throw new  CM_CameraManagerMissingBehaviourException(gameObject.name);
+            return cameraBehaviour;
+        }
+    }
+    
     private new Camera camera;
     public bool IsValid => !string.IsNullOrEmpty(id) && this;
 
@@ -27,6 +46,7 @@ public class CM_CameraComponent : MonoBehaviour
         }
         CM_CameraManager.Instance.AddCamera(this);
         name += "[CM]";
+        InitBehaviour();
     }
     
     void UnRegisterCamera()
@@ -34,4 +54,30 @@ public class CM_CameraComponent : MonoBehaviour
         if (!CM_CameraManager.Instance) return;
         CM_CameraManager.Instance.RemoveCamera(this);
     }
+
+    void InitBehaviour()
+    {
+        switch (type)
+        {
+            case CM_CameraType.RTS:
+                break;
+            case CM_CameraType.TPS:
+                cameraBehaviour = gameObject.AddComponent<CM_CameraTpsBehaviour>();
+                break;
+            case CM_CameraType.FPS:
+                break;
+            case CM_CameraType.ROTATE_AROUND:
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(type), type, null);
+        }
+    }
+}
+
+public enum CM_CameraType
+{
+    RTS,
+    TPS,
+    FPS,
+    ROTATE_AROUND
 }

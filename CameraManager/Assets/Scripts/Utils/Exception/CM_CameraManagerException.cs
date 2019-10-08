@@ -33,5 +33,13 @@ public class CM_CameraManagerMissingCameraException : CM_CameraManagerException
 
     public override string Message => $"\n OBJECT {objectName} \n DETAILS {base.Message}";
 }
+public class CM_CameraManagerMissingBehaviourException : CM_CameraManagerException
+{
+    public CM_CameraManagerMissingBehaviourException(string _objName) : base(_objName)
+    {
+      
+    }
 
+    public override string Message => $" CANNOT FIND BEHAVIOUR => \n OBJECT {objectName} \n DETAILS {base.Message}";
+}
 
