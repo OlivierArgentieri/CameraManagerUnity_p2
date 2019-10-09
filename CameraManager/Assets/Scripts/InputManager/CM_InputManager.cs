@@ -17,7 +17,7 @@ namespace InputManager
         public event MouseEventHandler OnMouse;
         
         
-        public event Action<float, float, float> onMouse = null;
+        public static event Action<float, float, float> onMouse = null;
         
         #endregion
 

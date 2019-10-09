@@ -9,9 +9,9 @@ public class CM_CameraFpsBehaviour : CM_CameraBehaviour
     
     #region custom methods
 
-    public override void Init(Transform _target, Camera _camera, FollowVectorType _fAxis)
+    public override void Init(CM_CameraSettings _settings, Camera _camera, FollowVectorType _fAxis)
     {
-        base.Init(_target, _camera, _fAxis);
+        base.Init( _settings, _camera, _fAxis);
         debugColor = Color.green;
         OnUpdateBehaviour += FollowTarget;
         OnUpdateBehaviour += LookAtTarget;

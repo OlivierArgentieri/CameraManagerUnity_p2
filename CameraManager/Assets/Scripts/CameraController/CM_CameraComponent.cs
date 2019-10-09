@@ -14,9 +14,10 @@ public class CM_CameraComponent : MonoBehaviour
     [SerializeField, Header("Camera Type")]
     private CM_CameraType type = CM_CameraType.TPS;
     
-    [SerializeField, Header("CameraTarget")]
-    private Transform cameraTarget;
+    [SerializeField, Header("Camera Settings")]
+    private CM_CameraSettings camSettings;
 
+    
     private CM_CameraBehaviour cameraBehaviour;
 
     public CM_CameraBehaviour CameraBehaviour
@@ -74,7 +75,7 @@ public class CM_CameraComponent : MonoBehaviour
                 throw new ArgumentOutOfRangeException(nameof(type), type, null);
         }
         if(cameraBehaviour)
-            cameraBehaviour.Init(cameraTarget, camera, _fAxis);
+            cameraBehaviour.Init(camSettings, camera, _fAxis);
     }
 }
 
@@ -85,3 +86,6 @@ public enum CM_CameraType
     FPS,
     ROTATE_AROUND
 }
+
+
+

@@ -23,9 +23,9 @@ public class CM_CameraTpsBehaviour : CM_CameraBehaviour
 
     #region custom methods
 
-    public override void Init(Transform _target, Camera _camera, FollowVectorType _fAxis)
+    public override void Init(CM_CameraSettings _settings, Camera _camera, FollowVectorType _fAxis)
     {
-        base.Init(_target, _camera, _fAxis);
+        base.Init(_settings, _camera, _fAxis);
         debugColor = Color.green;
         OnUpdateBehaviour += FollowTarget;
         OnUpdateBehaviour += LookAtTarget;
@@ -33,7 +33,7 @@ public class CM_CameraTpsBehaviour : CM_CameraBehaviour
 
     private void InputManagerOnMouse(float _fxValue, float _fyValue, float _fWheelValue)
     {
-        input += new Vector2(_fxValue, _fyValue);
+        input += new Vector2(_fxValue * behaviourSettings.Speed * Time.deltaTime, _fyValue * behaviourSettings.Speed * Time.deltaTime);
     }
 
     protected override void OnDestroy()
@@ -49,7 +49,7 @@ public class CM_CameraTpsBehaviour : CM_CameraBehaviour
     protected override void LookAtTarget()
     {
         transform.localRotation = Quaternion.Euler(input.y, input.x, 0);
-        transform.localPosition = cameraTarget.transform.position - (transform.localRotation * Vector3.forward * distance);
+        transform.localPosition = behaviourSettings.CameraTarget.transform.position - (transform.localRotation * Vector3.forward * behaviourSettings.Distance);
         base.LookAtTarget();
     }
 
