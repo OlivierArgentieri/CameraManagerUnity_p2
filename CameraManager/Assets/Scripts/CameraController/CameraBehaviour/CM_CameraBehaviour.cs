@@ -82,6 +82,7 @@ public class CM_CameraBehaviour : MonoBehaviour
             new Vector4(0, 0, 1, 0),
             new Vector4(_pos.x, _pos.y, _pos.z, 1));
         cameraTransform.rotation = (_oritentation * _translation).rotation;
+
     }
 
     protected Vector3 GetFollowAxis()

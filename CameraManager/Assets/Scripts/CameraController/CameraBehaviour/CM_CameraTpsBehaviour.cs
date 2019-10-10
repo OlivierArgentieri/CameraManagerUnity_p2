@@ -47,18 +47,13 @@ public class CM_CameraTpsBehaviour : CM_CameraBehaviour
     protected override void FollowTarget()
     {
         Vector3 offset = GetFollowAxis() * behaviourSettings.Distance;
-        cameraTransform.position = CM_MathTools.Lerp(cameraTransform.position,
-            behaviourSettings.CameraTarget.position + offset ,
-            Time.deltaTime * behaviourSettings.Speed);
+        cameraTransform.position = CM_MathTools.Lerp(cameraTransform.position,behaviourSettings.CameraTarget.position + offset ,Time.deltaTime * behaviourSettings.Speed);
         base.FollowTarget();
     }
 
     protected override void LookAtTarget()
     {
-        //camera.transform.forward = behaviourSettings.CameraTarget.position - camera.transform.position;
-        //transform.localRotation = Quaternion.Euler(input.y, input.x, 0);
-       // transform.localPosition = behaviourSettings.CameraTarget.transform.position - (transform.localRotation * Vector3.forward * behaviourSettings.Distance);
-        base.LookAtTarget();
+       base.LookAtTarget();
     }
 
     #endregion

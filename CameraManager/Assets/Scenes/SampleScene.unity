@@ -152,10 +152,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: osef
-  type: 1
+  type: 3
   camSettings:
     speed: 1
-    distance: 0
+    distance: 1
     cameraTarget: {fileID: 871238370}
 --- !u!81 &511162633
 AudioListener:

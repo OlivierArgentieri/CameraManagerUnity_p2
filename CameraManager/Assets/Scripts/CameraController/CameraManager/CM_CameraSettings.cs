@@ -11,7 +11,7 @@ public class CM_CameraSettings
 
 
     [SerializeField, Header("Camera distance"), UnityEngine.Range(.1f, 100f)]
-    protected float distance = .1f;
+    protected float distance = 1f;
 
     public float Distance => distance;
 

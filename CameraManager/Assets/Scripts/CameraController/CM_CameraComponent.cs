@@ -71,6 +71,9 @@ public class CM_CameraComponent : MonoBehaviour
                
                 break;
             case CM_CameraType.ROTATE_AROUND:
+                cameraBehaviour = gameObject.AddComponent<CM_CameraRotateAroundBehaviour>();
+                _fAxis = CM_CameraBehaviour.FollowVectorType.Backward;
+
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(type), type, null);

@@ -57,4 +57,15 @@ public static class CM_MathTools
         return new Vector3(x, y, z);
     }
 
+    public static Vector3 RotateAroud(Vector3 _target,float _range, ref float _angle, float _speed, float _t)
+    {
+        _angle += _t * _speed;
+        _angle = (_angle > 359) ? 0 : _angle;
+
+        float _x = Mathf.Cos(_angle) * _range;
+        float _y = 0;
+        float _z = Mathf.Sin(_angle) * _range;
+        return _target + new Vector3(_x, _y, _z);
+    }
+
 }

@@ -11,6 +11,7 @@
             <e p="CameraBehaviour" t="Include">
               <e p="CM_CameraBehaviour.cs" t="Include" />
               <e p="CM_CameraFpsBehaviour.cs" t="Include" />
+              <e p="CM_CameraRotateAroundBehaviour.cs" t="Include" />
               <e p="CM_CameraTpsBehaviour.cs" t="Include" />
             </e>
             <e p="CameraManager" t="Include">
