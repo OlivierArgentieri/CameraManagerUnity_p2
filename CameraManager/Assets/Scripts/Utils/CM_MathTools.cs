@@ -29,7 +29,7 @@ public static class CM_MathTools
     public static float sqrt10(float _value)
     {
         float flag = _value / 2;
-        for (uint i = 0; i < 10; i++)
+        for (uint i = 0; i < 20; i++)
         {
             if (flag * flag > _value)
                 flag /= 2;

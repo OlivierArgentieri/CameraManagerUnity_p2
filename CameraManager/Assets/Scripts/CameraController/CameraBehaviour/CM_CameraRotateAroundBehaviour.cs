@@ -27,7 +27,7 @@ public class CM_CameraRotateAroundBehaviour : CM_CameraBehaviour
     }
 
     private void RotateAround()
-    { 
+    {
         cameraTransform.position = CM_MathTools.RotateAroud(behaviourSettings.CameraTarget.position, behaviourSettings.Distance , ref angle, behaviourSettings.Speed, Time.deltaTime);
     }
     #endregion

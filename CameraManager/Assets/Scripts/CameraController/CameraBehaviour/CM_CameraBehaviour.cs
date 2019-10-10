@@ -55,7 +55,8 @@ public class CM_CameraBehaviour : MonoBehaviour
 
     protected virtual void FollowTarget()
     {
-        
+        Vector3 offset = GetFollowAxis() * behaviourSettings.Distance;
+        cameraTransform.position = CM_MathTools.Lerp(cameraTransform.position,behaviourSettings.CameraTarget.position + offset ,Time.deltaTime * behaviourSettings.Speed);
     }
 
     protected virtual void LookAtTarget()

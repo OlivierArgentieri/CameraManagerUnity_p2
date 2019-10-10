@@ -73,7 +73,11 @@ public class CM_CameraComponent : MonoBehaviour
             case CM_CameraType.ROTATE_AROUND:
                 cameraBehaviour = gameObject.AddComponent<CM_CameraRotateAroundBehaviour>();
                 _fAxis = CM_CameraBehaviour.FollowVectorType.Backward;
+                break;
 
+            case CM_CameraType.OSCILLATION:
+                cameraBehaviour = gameObject.AddComponent<CM_CameraOscillationBehaviour>();
+                _fAxis = CM_CameraBehaviour.FollowVectorType.Backward;
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(type), type, null);
@@ -88,7 +92,8 @@ public enum CM_CameraType
     RTS,
     TPS,
     FPS,
-    ROTATE_AROUND
+    ROTATE_AROUND,
+    OSCILLATION
 }
 
 
