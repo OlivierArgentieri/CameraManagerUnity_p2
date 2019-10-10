@@ -17,9 +17,6 @@ public class CM_CameraManager : MonoBehaviour
     #endregion
 
     #region unity methods
-    
-    
-    
     private void Awake()
     {
         InitSingleton();

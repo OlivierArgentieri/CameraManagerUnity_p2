@@ -28,15 +28,10 @@ public static class CM_MathTools
 
     public static float sqrt10(float _value)
     {
-        float flag = _value / 2;
-        for (uint i = 0; i < 20; i++)
-        {
-            if (flag * flag > _value)
-                flag /= 2;
-            else
-                flag *= 2;
-        }
-        return flag;
+        float _sqrt = 1;
+        for (int i = 0; i < 10; i++)
+            _sqrt -= ((_sqrt * _sqrt) - _value) / (2 * _sqrt);
+        return _sqrt;
     }
 
     public static Vector3 Substract(Vector3 _v0, Vector3 _v1)
@@ -67,5 +62,4 @@ public static class CM_MathTools
         float _z = Mathf.Sin(_angle) * _range;
         return _target + new Vector3(_x, _y, _z);
     }
-
 }
