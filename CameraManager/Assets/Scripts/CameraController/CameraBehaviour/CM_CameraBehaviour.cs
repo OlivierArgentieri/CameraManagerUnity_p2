@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Analytics;
-using UnityEngine.Serialization;
 
 public class CM_CameraBehaviour : MonoBehaviour
 {
@@ -52,6 +48,7 @@ public class CM_CameraBehaviour : MonoBehaviour
         
         if (!_camera) return;
         camera = _camera;
+        cameraTransform = _camera.transform;
         behaviourSettings = _settings;
         fAxis = _fAxis;
     }
@@ -63,6 +60,28 @@ public class CM_CameraBehaviour : MonoBehaviour
 
     protected virtual void LookAtTarget()
     {
+        if (!IsValid) return;
+        Matrix4x4 _oritentation = Matrix4x4.identity;
+        Matrix4x4 _translation = Matrix4x4.identity;
+        Vector3 _pos = cameraTransform.position;
+        Vector3 _target = behaviourSettings.CameraTarget.position;
+
+        Vector3 _zAxis = CM_MathTools.Normalize(CM_MathTools.Substract(_pos, _target));
+
+        Vector3 _xAxis = CM_MathTools.Normalize(CM_MathTools.CrossProduct(Vector3.up, _zAxis));
+        Vector3 _yAxis = CM_MathTools.CrossProduct(_zAxis, _xAxis);
+
+        _oritentation = new Matrix4x4(new Vector4(_xAxis.x, _xAxis.y, _xAxis.z, 0),
+            new Vector4(_yAxis.x, _yAxis.y, _yAxis.z, 0),
+            new Vector4(_zAxis.x, _zAxis.y, _zAxis.z, 0),
+            new Vector4(0, 0, 0, 1));
+
+        _translation = new Matrix4x4(
+            new Vector4(1, 0, 0, 0),
+            new Vector4(0, 1, 0, 0),
+            new Vector4(0, 0, 1, 0),
+            new Vector4(_pos.x, _pos.y, _pos.z, 1));
+        cameraTransform.rotation = (_oritentation * _translation).rotation;
     }
 
     protected Vector3 GetFollowAxis()

@@ -46,11 +46,11 @@ public class CM_CameraTpsBehaviour : CM_CameraBehaviour
 
     protected override void FollowTarget()
     {
-        if (!IsValid) return;
-        
         Vector3 offset = GetFollowAxis() * behaviourSettings.Distance;
-        camera.transform.position = CM_MathTools.Lerp(camera.transform.position, behaviourSettings.CameraTarget.position + offset, /*Time.deltaTime * behaviourSettings.Speed*/ 0.5f);
-        
+        cameraTransform.position = CM_MathTools.Lerp(cameraTransform.position,
+            behaviourSettings.CameraTarget.position + offset ,
+            Time.deltaTime * behaviourSettings.Speed);
+        base.FollowTarget();
     }
 
     protected override void LookAtTarget()
