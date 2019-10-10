@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CM_CameraOscillationBehaviour : CM_CameraBehaviour
+public class CM_CameraShakeBehaviour : CM_CameraBehaviour
 {
     #region unity methods
     #endregion
@@ -15,7 +15,6 @@ public class CM_CameraOscillationBehaviour : CM_CameraBehaviour
         debugColor = Color.green;
         OnUpdateBehaviour += FollowTarget;
         OnUpdateBehaviour += LookAtTarget;
-        OnUpdateBehaviour += Oscillation;
     }
 
     protected override void OnDestroy()
@@ -32,9 +31,8 @@ public class CM_CameraOscillationBehaviour : CM_CameraBehaviour
     {
         base.LookAtTarget();
     }
-    private void Oscillation()
-    {
-        cameraTransform.position += Vector3.up * Mathf.Sin(Time.fixedTime )* 0.1f;
-    }
+
+
+
     #endregion
 }

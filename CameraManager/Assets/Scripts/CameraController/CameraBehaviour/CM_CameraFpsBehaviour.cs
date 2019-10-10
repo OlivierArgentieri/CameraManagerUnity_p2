@@ -32,7 +32,7 @@ public class CM_CameraFpsBehaviour : CM_CameraBehaviour
         base.LookAtTarget();
     }
 
-   
+
 
     #endregion
 }

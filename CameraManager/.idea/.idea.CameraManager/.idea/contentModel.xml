@@ -11,8 +11,9 @@
             <e p="CameraBehaviour" t="Include">
               <e p="CM_CameraBehaviour.cs" t="Include" />
               <e p="CM_CameraFpsBehaviour.cs" t="Include" />
-              <e p="CM_CameraOscillation.cs" t="Include" />
+              <e p="CM_CameraOscillationBehaviour.cs" t="Include" />
               <e p="CM_CameraRotateAroundBehaviour.cs" t="Include" />
+              <e p="CM_CameraShakeBehaviour.cs" t="Include" />
               <e p="CM_CameraTpsBehaviour.cs" t="Include" />
             </e>
             <e p="CameraManager" t="Include">
@@ -26,6 +27,7 @@
           </e>
           <e p="Test" t="Include">
             <e p="CM_CamComponentTest.cs" t="Include" />
+            <e p="CM_CamViewTest.cs" t="Include" />
           </e>
           <e p="Utils" t="Include">
             <e p="CM_MathTools.cs" t="Include" />

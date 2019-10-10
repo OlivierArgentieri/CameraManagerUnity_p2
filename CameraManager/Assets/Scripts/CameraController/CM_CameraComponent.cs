@@ -16,6 +16,12 @@ public class CM_CameraComponent : MonoBehaviour
     
     [SerializeField, Header("Camera Settings")]
     private CM_CameraSettings camSettings;
+
+    public void SetViewActive(bool _active)
+    {
+        if (!IsValid) return;
+        camera.enabled = _active;
+    }
     
     private CM_CameraBehaviour cameraBehaviour;
 

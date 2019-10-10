@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
 [AddComponentMenu("Camera Manager/Manager")]
@@ -14,9 +12,14 @@ public class CM_CameraManager : MonoBehaviour
     public static CM_CameraManager Instance => instance;
     private Dictionary<string, CM_CameraComponent> cameras = new Dictionary<string, CM_CameraComponent>();
 
+    [SerializeField, Header("Focus Camera")]
+    private string CameraFocusId;
     #endregion
 
     #region unity methods
+    
+    
+    
     private void Awake()
     {
         InitSingleton();
@@ -70,8 +73,6 @@ public class CM_CameraManager : MonoBehaviour
     {
         if (!cameras.ContainsKey(_cameraComponent.ID)) return;
         _cameraComponent.IsEnable = false;
-
-
     }
     
     public void DisableCamera(string _cameraComponentId)
@@ -116,6 +117,25 @@ public class CM_CameraManager : MonoBehaviour
         Gizmos.color = Color.white;
 
     }
+
+    public void SetViewActive(string _camID)
+    {
+        if (!cameras.ContainsKey((_camID))) return;
+        cameras.Values.ToList().ForEach(o => o.SetViewActive(false));
+        cameras[_camID].SetViewActive(true);
+    }
+
+    private void DisableAllCamera()
+    {
+        cameras.Values.ToList().ForEach(o => DisableCamera(o));
+    }
+
+    private void SwitchCamera(string _cameraId)
+    {
+        DisableAllCamera();
+        EnableCamera(_cameraId);
+    }
+    
     
     #endregion
 }
