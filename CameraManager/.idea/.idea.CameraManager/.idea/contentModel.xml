@@ -22,7 +22,11 @@
           <e p="InputManager" t="Include">
             <e p="CM_InputManager.cs" t="Include" />
           </e>
+          <e p="Test" t="Include">
+            <e p="CM_CamComponentTest.cs" t="Include" />
+          </e>
           <e p="Utils" t="Include">
+            <e p="CM_MathTools.cs" t="Include" />
             <e p="Exception" t="Include">
               <e p="CM_CameraManagerException.cs" t="Include" />
             </e>

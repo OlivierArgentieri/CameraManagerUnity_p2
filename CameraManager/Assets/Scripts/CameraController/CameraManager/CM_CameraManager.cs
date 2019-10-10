@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
@@ -28,7 +29,7 @@ public class CM_CameraManager : MonoBehaviour
 
     void UpdateCameraComponent()
     {
-        foreach (KeyValuePair<string, CM_CameraComponent> cam in cameras)
+        foreach (KeyValuePair<string, CM_CameraComponent> cam in cameras.Where(c => c.Value.IsEnable))
         {
             cam.Value.CameraBehaviour.OnUpdateBehaviour?.Invoke();
         }
@@ -36,18 +37,17 @@ public class CM_CameraManager : MonoBehaviour
 
     private void InitSingleton()
     {
-        if (instance != null && instance != this)
-        {
-            Destroy(GetComponent<CM_CameraManager>());
-        }
-        else
+        if (instance == null)
         {
             instance = this;
-            name += "[CM_CameraManager]";
-            DontDestroyOnLoad(this);
+            name = "[CM_CameraManager]";
+            DontDestroyOnLoad(gameObject);
         }
+        
+        if (instance != this)
+            Destroy(gameObject);
     }
-
+    
     public void AddCamera(CM_CameraComponent _camera) => CameraManagerHandler(true, _camera);
     public void RemoveCamera(CM_CameraComponent _camera) => CameraManagerHandler(false, _camera);
 
@@ -66,6 +66,32 @@ public class CM_CameraManager : MonoBehaviour
             cameras.Remove(_cameraComponent.ID);
     }
 
+    public void DisableCamera(CM_CameraComponent _cameraComponent)
+    {
+        if (!cameras.ContainsKey(_cameraComponent.ID)) return;
+        _cameraComponent.IsEnable = false;
+
+
+    }
+    
+    public void DisableCamera(string _cameraComponentId)
+    {        
+        if (!cameras.ContainsKey( _cameraComponentId)) return;
+        cameras[ _cameraComponentId].IsEnable = false;
+
+    }
+    
+    public void EnableCamera(CM_CameraComponent _cameraComponent)
+    {
+        if (!cameras.ContainsKey(_cameraComponent.ID)) return;
+        _cameraComponent.IsEnable = true;
+    }
+    
+    public void EnableCamera(string _cameraComponentId)
+    {
+        if (!cameras.ContainsKey( _cameraComponentId)) return;
+        cameras[ _cameraComponentId].IsEnable = true;
+    }
     #endregion
     
     #region debug

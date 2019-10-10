@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Analytics;
 using UnityEngine.Serialization;
 
 public class CM_CameraBehaviour : MonoBehaviour
@@ -11,10 +12,12 @@ public class CM_CameraBehaviour : MonoBehaviour
     public Action OnUpdateBehaviour = null;
     
     
-    private new Camera camera;
+    protected new Camera camera;
     protected Transform cameraTransform;
     protected CM_CameraSettings behaviourSettings;
-
+    
+    private float temp = 0;
+    
     // Accesseur
     public bool IsValid => behaviourSettings.CameraTarget && camera;
 
@@ -55,6 +58,7 @@ public class CM_CameraBehaviour : MonoBehaviour
 
     protected virtual void FollowTarget()
     {
+        
     }
 
     protected virtual void LookAtTarget()

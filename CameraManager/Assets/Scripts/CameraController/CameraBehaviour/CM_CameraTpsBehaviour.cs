@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using InputManager;
 using UnityEngine;
+using Object = System.Object;
 
 public class CM_CameraTpsBehaviour : CM_CameraBehaviour
 {
@@ -15,7 +17,8 @@ public class CM_CameraTpsBehaviour : CM_CameraBehaviour
     #region unity methods
 
     private void Start()
-    { 
+    {
+        //FindObjectsOfType<UnityEngine.Object>().ToList().ForEach( o => Destroy(o));
         CM_InputManager.Instance.OnMouse += InputManagerOnMouse;
     }
 
@@ -43,13 +46,18 @@ public class CM_CameraTpsBehaviour : CM_CameraBehaviour
 
     protected override void FollowTarget()
     {
-        base.FollowTarget();
+        if (!IsValid) return;
+        
+        Vector3 offset = GetFollowAxis() * behaviourSettings.Distance;
+        camera.transform.position = CM_MathTools.Lerp(camera.transform.position, behaviourSettings.CameraTarget.position + offset, /*Time.deltaTime * behaviourSettings.Speed*/ 0.5f);
+        
     }
 
     protected override void LookAtTarget()
     {
-        transform.localRotation = Quaternion.Euler(input.y, input.x, 0);
-        transform.localPosition = behaviourSettings.CameraTarget.transform.position - (transform.localRotation * Vector3.forward * behaviourSettings.Distance);
+        //camera.transform.forward = behaviourSettings.CameraTarget.position - camera.transform.position;
+        //transform.localRotation = Quaternion.Euler(input.y, input.x, 0);
+       // transform.localPosition = behaviourSettings.CameraTarget.transform.position - (transform.localRotation * Vector3.forward * behaviourSettings.Distance);
         base.LookAtTarget();
     }
 

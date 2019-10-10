@@ -16,7 +16,6 @@ public class CM_CameraComponent : MonoBehaviour
     
     [SerializeField, Header("Camera Settings")]
     private CM_CameraSettings camSettings;
-
     
     private CM_CameraBehaviour cameraBehaviour;
 
@@ -31,6 +30,7 @@ public class CM_CameraComponent : MonoBehaviour
     
     private new Camera camera;
     public bool IsValid => !string.IsNullOrEmpty(id) && this;
+    public bool IsEnable { get; set; } = true;
 
     private void Start() => RegisterCamera();
 
@@ -38,7 +38,7 @@ public class CM_CameraComponent : MonoBehaviour
 
     void RegisterCamera()
     {
-        if (!CM_CameraManager.Instance) return;
+       if (!CM_CameraManager.Instance) return;
 
         if (!camera)
         {
@@ -68,6 +68,7 @@ public class CM_CameraComponent : MonoBehaviour
                 _fAxis = CM_CameraBehaviour.FollowVectorType.Backward;
                 break;
             case CM_CameraType.FPS:
+               
                 break;
             case CM_CameraType.ROTATE_AROUND:
                 break;
