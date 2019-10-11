@@ -68,7 +68,6 @@ namespace InputManager
         #endregion
 
         #region input
-
         [SerializeField, Header("Jump Input")] private KeyCode jumpValue = KeyCode.Space;
 
         [SerializeField, Header("Jump Feedback")]
@@ -89,6 +88,8 @@ namespace InputManager
         #region event
 
         public static event Action<float> OnVerticalAxis = null;
+        public static event Action<float, float> OnMouse= null;
+        
 
         #endregion
 
@@ -103,8 +104,8 @@ namespace InputManager
 
         private void Update()
         {
-            //OnVerticalAxis.Invoke(GetVertical);
             OnVerticalAxis?.Invoke(GetVertical);
+            OnMouse?.Invoke(GetMouseVertical, GetMouseHorizontal);
         }
 
         #endregion

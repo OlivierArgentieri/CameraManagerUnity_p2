@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class CM_InputTest : MonoBehaviour
 {
+    [SerializeField] private Vector3 target;
+    [SerializeField] private int angle;
+    
     private void Awake()
     {
         CM_InputManager.OnVerticalAxis += UpdateMove;

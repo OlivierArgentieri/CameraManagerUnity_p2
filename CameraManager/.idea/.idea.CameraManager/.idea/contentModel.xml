@@ -26,6 +26,7 @@
             <e p="CM_InputManager.cs" t="Include" />
             <e p="Test" t="Include">
               <e p="CM_InputTest.cs" t="Include" />
+              <e p="CM_RotateAroundTestInput.cs" t="Include" />
             </e>
           </e>
           <e p="Test" t="Include">
@@ -37,6 +38,12 @@
             <e p="CM_MathTools.cs" t="Include" />
             <e p="Exception" t="Include">
               <e p="CM_CameraManagerException.cs" t="Include" />
+            </e>
+            <e p="Vector3" t="Include">
+              <e p="CM_Vector3.cs" t="Include" />
+              <e p="Test" t="Include">
+                <e p="CM_Test_CM_Vector3.cs" t="Include" />
+              </e>
             </e>
           </e>
         </e>
