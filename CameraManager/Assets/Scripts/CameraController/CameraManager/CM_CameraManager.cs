@@ -40,7 +40,7 @@ public class CM_CameraManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            name = "[CM_CameraManager]";
+            name = "[CM_CAMERA_MANAGER]";
             DontDestroyOnLoad(gameObject);
         }
         

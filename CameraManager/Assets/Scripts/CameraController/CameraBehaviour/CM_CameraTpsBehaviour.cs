@@ -19,7 +19,7 @@ public class CM_CameraTpsBehaviour : CM_CameraBehaviour
     private void Start()
     {
         //FindObjectsOfType<UnityEngine.Object>().ToList().ForEach( o => Destroy(o));
-        CM_InputManager.Instance.OnMouse += InputManagerOnMouse;
+       // CM_InputManager.Instance.OnMouse += InputManagerOnMouse;
     }
 
     #endregion
