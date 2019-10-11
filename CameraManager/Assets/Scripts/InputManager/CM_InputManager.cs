@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Experimental.PlayerLoop;
@@ -42,15 +43,18 @@ namespace InputManager
 
         private void InitSingleton()
         {
-            if (instance && instance != this)
+            if (instance == null)
             {
-                Destroy(gameObject.GetComponent<CM_InputManager>());
-                return;
+                instance = this;
+                name = "[INPUT MANAGER]";
+                DontDestroyOnLoad(this);
             }
 
-            instance = this;
-            name += "[CM_InputManager]";
-            DontDestroyOnLoad(this);
+            if (instance != this)
+            {
+                Destroy(gameObject);
+                
+            }
         }
 
 

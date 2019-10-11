@@ -49,6 +49,7 @@ public class CM_CameraShakeBehaviour : CM_CameraBehaviour
      
         camera.transform.Rotate(roll, pitch, yaw);
             //camera.transform. += new Vector3(offsetX, offsetY, offsetZ);
+
     }
 
 
