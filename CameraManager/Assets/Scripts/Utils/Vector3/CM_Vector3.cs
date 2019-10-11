@@ -96,10 +96,17 @@ public struct CM_Vector3
     public static float Angle(CM_Vector3 _v0, CM_Vector3 _v1)
     {
         float _temp = (float) (CM_Vector3.Magnitude(_v0) * CM_Vector3.Magnitude(_v1));
-        _temp = (float) Math.Sqrt(_temp);
+        
+        _temp=  (float) (Math.Acos(Dot(_v0, _v1) / _temp));
 
-        return (float) Math.Acos(Dot(_v0, _v1) / _temp);
+        return RadToDeg(_temp);
     }
+
+    public static float RadToDeg(float _rad)
+    {
+        return  _rad * 180 / (float) Math.PI;
+    }
+    
     public static double Magnitude(CM_Vector3 _v0)
     {
         float _x = _v0.x;
@@ -108,6 +115,7 @@ public struct CM_Vector3
 
         return Math.Sqrt(_x * _x + _y * _y + _z * _z);
     }
+    
     public static float Dot(CM_Vector3 _v0, CM_Vector3 _v1)
     {
         float _x = _v0.x * _v1.x;

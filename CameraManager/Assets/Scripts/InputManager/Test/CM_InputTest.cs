@@ -30,6 +30,5 @@ public class CM_InputTest : MonoBehaviour
 
     void UpdateMove(float _vertical)
     {
-        Debug.Log(_vertical);
     }
 }
